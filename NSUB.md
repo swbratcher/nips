@@ -1,7 +1,7 @@
-NIP-NSUB
+NIP-NSUB [placeholder name]
 ========
 
-NSEC key delegates/revokes NSUB (pre-alpha for feedback)
+NSUB as delegate for NSEC/NPUB pairs (pre-alpha for feedback)
 -------------------------------
 
 `draft` `optional`
@@ -211,14 +211,16 @@ Implementing both optimizations can maximize relay performance by balancing comp
 
 ### Client UX Recommendations
 
-With adoption client applications may be able to off user experiences for managing hierarchical keys without ever revealing the nsec, allowing the nsec to be stored on software or hardware with dedicated use as delegation and revocation signers.
+Client applications may be able to off user experiences for managing hierarchical keys without ever revealing the nsec, allowing the nsec to be stored on software or hardware with dedicated use as delegation and revocation signers.
 
 ---
 
-### Backwards Compatibility
+### Backward Compatibility
 
-- This proposal does not alter the existing public key `npub` and `nsec` structure, ensuring compatibility with current relays and clients that have not adopted this NIP.
-- Systems not implementing delegation proofs will continue to function normally.
+- **Existing Users**: This proposal preserves the `npub` and `nsec` structure, allowing existing users to adopt subordinate keys (`nsub`) without losing followers, content, or social connections.
+- **Non-Adopting Relays**: Relays that do not implement delegation proofs (`kind: 30080`) or revocation events (`kind: 30081`) will continue to accept events signed by `nsub` keys as valid, treating them like any other signed events.
+- **Adopting Relays**: Relays implementing this NIP will validate delegation proofs and enforce revocations, enhancing security while remaining interoperable with non-adopting relays.
+- **Interoperability**: Events signed by `nsub` keys remain valid across all relays, ensuring seamless coexistence between adopting and non-adopting relays.
 
 ---
 
