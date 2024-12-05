@@ -1,4 +1,4 @@
-NIP-NSUB [placeholder name]
+NIP-NSUB [ABANDONED]
 ========
 
 NSUB as delegate for NSEC/NPUB pairs (pre-alpha for feedback)
